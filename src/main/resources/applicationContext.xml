@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+    <!--spring1.x 使用xml文件实现IOC控制反转 -->
+    <bean name="spring1xService" class="com.cnpc.demo.spring1x.Spring1xService"/>
+
+    <!--spring2.x 使用注解形式，加载扫描包内的带有注解的类实现IOC-->
+    <context:component-scan base-package="com.cnpc.demo.spring2x"/>
+    <!--scheduler注解驱动-->
+    <task:annotation-driven scheduler="scheduler"/>
+    <task:scheduler id="scheduler" pool-size="5"/>
+
+    <!--导入配置文件-->
+    <import resource="classpath:applicationContext1.xml"/>
+</beans>
